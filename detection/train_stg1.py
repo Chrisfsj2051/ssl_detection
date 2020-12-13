@@ -23,6 +23,9 @@ import tensorflow as tf
 import json
 import multiprocessing as mp
 
+# 删除tensorpack重新安装
+# cudatoolkit要10.0
+
 from tensorpack import *
 from tensorpack.tfutils import collect_env_info
 from tensorpack.tfutils.common import get_tf_version_tuple
@@ -36,7 +39,7 @@ from dataset import register_coco, register_voc
 from FasterRCNN.eval import EvalCallback
 from FasterRCNN.modeling.generalized_rcnn import ResNetC4Model, ResNetFPNModel
 from utils.stac_helper import PathLog
-
+# :/home/nirvana/workspace/PycharmProjects/ssl_detection/third_party/tensorpack
 try:
   import horovod.tensorflow as hvd
 except ImportError:

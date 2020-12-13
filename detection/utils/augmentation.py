@@ -13,7 +13,7 @@
 # limitations under the License.
 """Object detection strong augmentation utilities."""
 # pylint: disable=g-explicit-length-test
-
+import cv2
 from auto_augment import augmentations
 from FasterRCNN.utils import np_box_ops
 
@@ -25,16 +25,20 @@ import numpy as np
 from tensorpack.utils import logger
 
 
+# RANDOM_COLOR_POLICY_OPS = (
+#     'Identity',
+#     'AutoContrast',
+#     'Equalize',
+#     'Solarize',
+#     'Color',
+#     'Contrast',
+#     'Brightness',
+#     'Sharpness',
+#     'Posterize',
+# )
+
 RANDOM_COLOR_POLICY_OPS = (
-    'Identity',
     'AutoContrast',
-    'Equalize',
-    'Solarize',
-    'Color',
-    'Contrast',
-    'Brightness',
-    'Sharpness',
-    'Posterize',
 )
 
 # for image size == 800, 0.1 is 80.
@@ -273,4 +277,17 @@ class RandomAugmentBBox(object):
           images=images, bounding_boxes=bounding_boxes, **kwargs)
       if _T is not None:
         T = _T
+    import matplotlib.pyplot as plt
+    img = images[0].astype(np.int32)
+    img = np.ascontiguousarray(img)
+    # for bbox in bounding_boxes[0]:
+    #     (x1, y1, x2, y2) = bbox.x1, bbox.y1, bbox.x2, bbox.y2
+    #     left_top = (int(x1), int(y1))
+    #     right_bottom = (int(x2), int(y2))
+    #     print(left_top, right_bottom)
+    #     cv2.rectangle(img, left_top, right_bottom, 'green', thickness=1)
+    img = img.astype(np.uint8)
+    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    plt.imshow(img)
+    plt.show()
     return images, bounding_boxes, T

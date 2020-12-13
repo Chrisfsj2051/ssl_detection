@@ -412,6 +412,7 @@ def _enhancer_impl(enhancer):
 
   def impl(pil_img, level):
     v = float_parameter(level, 1.8) + .1  # going to 0 just destroys it
+    print(level, v)
     return enhancer(pil_img).enhance(v)
 
   return impl
