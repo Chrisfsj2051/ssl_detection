@@ -174,7 +174,9 @@ class TrainingDataPreprocessorAug(TrainingDataPreprocessor):
       else:
         ret["anchor_labels"], ret["anchor_boxes"] = self.get_rpn_anchor_input(
             im, boxes, is_crowd)
-
+      if sum(is_crowd) !=0 :
+        # no case
+        print('???')
       boxes = boxes[is_crowd == 0]  # skip crowd boxes in training target
       klass = klass[is_crowd == 0]
       ret["gt_boxes"] = boxes

@@ -25,21 +25,21 @@ import numpy as np
 from tensorpack.utils import logger
 
 
-# RANDOM_COLOR_POLICY_OPS = (
-#     'Identity',
-#     'AutoContrast',
-#     'Equalize',
-#     'Solarize',
-#     'Color',
-#     'Contrast',
-#     'Brightness',
-#     'Sharpness',
-#     'Posterize',
-# )
-
 RANDOM_COLOR_POLICY_OPS = (
+    'Identity',
     'AutoContrast',
+    'Equalize',
+    'Solarize',
+    'Color',
+    'Contrast',
+    'Brightness',
+    'Sharpness',
+    'Posterize',
 )
+
+# RANDOM_COLOR_POLICY_OPS = (
+#     'AutoContrast',
+# )
 
 # for image size == 800, 0.1 is 80.
 CUTOUT = iaa.Cutout(nb_iterations=(1, 5), size=[0, 0.2], squared=True)
@@ -288,6 +288,6 @@ class RandomAugmentBBox(object):
     #     cv2.rectangle(img, left_top, right_bottom, 'green', thickness=1)
     img = img.astype(np.uint8)
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-    plt.imshow(img)
-    plt.show()
+    # plt.imshow(img)
+    # plt.show()
     return images, bounding_boxes, T
